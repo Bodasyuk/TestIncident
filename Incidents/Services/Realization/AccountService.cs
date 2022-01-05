@@ -49,7 +49,18 @@ public class AccountService:IAccountService
     {
         return await _wrapper.Account.GetFirstAsync(x => x.Name == name);
     }
-    
+
+    public async Task LinkIncident(string name, string incidentName)
+    {
+        var incident = await _wrapper.Incident.GetFirstOrDefaultAsync(x => x.IncidentName.ToString() == incidentName);
+        if (incident == null)
+            throw new Exception();
+        var account = await _wrapper.Account.GetFirstOrDefaultAsync(x => x.Name == name);
+        account.IncidentName = incident.IncidentName;
+        _wrapper.Account.Update(account);
+        await _wrapper.SaveAsync();
+    }
+
     public async Task<IEnumerable<Accounts>> GetAllAsync()
     {
         return await _wrapper.Account.GetAllAsync();

@@ -27,7 +27,7 @@ public class ContactService : IContactService
     public async Task Update(Contacts entity)
     {
         var contact = entity;
-        contact.Id = _wrapper.Contact.GetFirstAsync(x => x.Email == entity.Email).Result.Id;
+        contact.ContactId = _wrapper.Contact.GetFirstAsync(x => x.Email == entity.Email).Result.ContactId;
         _wrapper.Contact.Update(entity);
         await _wrapper.SaveAsync();
     }

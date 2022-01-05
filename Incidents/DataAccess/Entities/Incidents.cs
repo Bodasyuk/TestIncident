@@ -11,5 +11,5 @@ public class Incidents
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid IncidentName { get; set; }
     public string Description { get; set; }
-    public  ICollection<Accounts> Accounts { get; set; }
+    public  ICollection<Accounts>? Accounts { get; set; }
 }

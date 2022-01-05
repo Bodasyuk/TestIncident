@@ -15,6 +15,12 @@ public class ContactController : ControllerBase
         _contactService = contactService;
     }
 
+    /// <summary>
+    /// Create Contact
+    /// </summary>
+    /// <param name="contacts">The fields of the contact</param>
+    /// <response code="200">Successful operation</response>
+    /// <response code="400">Bad Request</response>
     [HttpPost]
     public async Task<IActionResult> CreateAsync(Contacts? contacts)
     {
@@ -33,7 +39,14 @@ public class ContactController : ControllerBase
             return BadRequest(e.Message);
         }
     }
-
+    
+    /// <summary>
+    /// Create Account to Contact
+    /// </summary>
+    /// <param name="name">The field of the account</param>
+    /// <param name="mail">The mail of the contact</param>
+    /// <response code="200">Successful operation</response>
+    /// <response code="400">Bad Request</response>
     [HttpPut]
     public async Task<IActionResult> LinkContact(string mail, string name)
     {
@@ -49,7 +62,13 @@ public class ContactController : ControllerBase
             return BadRequest(e.Message);
         }
     }
-
+    
+    /// <summary>
+    /// Get Contacts
+    /// </summary>
+    /// <returns>Contacts</returns>
+    /// <response code="200">Successful operation</response>
+    /// <response code="400">Bad Request</response>
     [HttpGet]
     public async Task<IActionResult> GetAllAsync()
     {
@@ -63,6 +82,12 @@ public class ContactController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Delete Contact
+    /// </summary>
+    /// <param name="mail">The mail of the contact</param>
+    /// <response code="200">Successful operation</response>
+    /// <response code="400">Bad Request</response>
     [HttpDelete]
     public async Task<IActionResult> Delete(string mail)
     {
