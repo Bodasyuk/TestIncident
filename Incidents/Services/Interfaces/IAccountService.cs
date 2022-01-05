@@ -10,4 +10,5 @@ public interface IAccountService
     public Task Delete(string name);
     public Task<IEnumerable<Accounts>> GetAllAsync();
     public Task LinkIncident(string name, string incidentName);
+    public Task<Accounts> GetFirstOrDefaultAsync(string name);
 }

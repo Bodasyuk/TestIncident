@@ -78,4 +78,19 @@ public class AccountController:ControllerBase
         }
        
     }
+
+    [HttpDelete]
+
+    public async Task<IActionResult> Delete(string name)
+    {
+        try
+        {
+            await _service.Update(await _service.GetFirstOrDefaultAsync(name));
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 }

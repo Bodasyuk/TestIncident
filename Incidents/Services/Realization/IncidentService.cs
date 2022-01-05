@@ -31,12 +31,13 @@ public class IncidentService : IIncidentService
         _wrapper.Save();
     }
 
-    public async Task Update(DataAccess.Entities.Incidents entity)
+    public async Task Update(string name, string description)
     {
-        var incident = await _wrapper.Incident.GetFirstOrDefaultAsync(x => x.IncidentName == entity.IncidentName);
+        var incident = await _wrapper.Incident.GetFirstOrDefaultAsync(x => x.IncidentName.ToString() == name);
         if (incident == null)
             throw new Exception();
-        _wrapper.Incident.Delete(incident);
+        incident.Description = description;
+        _wrapper.Incident.Update(incident);
     }
 
     public async Task Delete(string name)

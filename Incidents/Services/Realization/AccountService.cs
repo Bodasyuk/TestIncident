@@ -61,6 +61,11 @@ public class AccountService:IAccountService
         await _wrapper.SaveAsync();
     }
 
+    public async Task<Accounts> GetFirstOrDefaultAsync(string name)
+    {
+        return await _wrapper.Account.GetFirstOrDefaultAsync(x => x.Name == name);
+    }
+
     public async Task<IEnumerable<Accounts>> GetAllAsync()
     {
         return await _wrapper.Account.GetAllAsync();

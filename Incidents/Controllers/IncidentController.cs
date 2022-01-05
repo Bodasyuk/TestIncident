@@ -50,6 +50,46 @@ public class IncidentController : ControllerBase
         {
             return BadRequest(e.Message);
         }
-        
+    }
+
+    /// <summary>
+    /// Delete Incident
+    /// </summary>
+    /// <param name="name">The name of the account</param>
+    /// <response code="200">Successful operation</response>
+    /// <response code="400">Bad Request</response>
+    [HttpDelete]
+    public async Task<IActionResult> Delete(string name)
+    {
+        try
+        {
+            await _incidentService.Delete(name);
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    /// <summary>
+    /// Update Incident
+    /// </summary>
+    /// <param name="description">The description of the incident</param>
+    /// <param name="name">The name of the account</param>
+    /// <response code="200">Successful operation</response>
+    /// <response code="400">Bad Request</response>
+    [HttpPut]
+    public async Task<IActionResult> Update(string name, string description)
+    {
+        try
+        {
+            await _incidentService.Update(name, description);
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
     }
 }
